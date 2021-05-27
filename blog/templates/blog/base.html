@@ -1,0 +1,51 @@
+{% load staticfiles %}
+
+{% load static %}
+<html>
+    <head>
+        <title>TechbookTest</title>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link href='//fonts.googleapis.com/css?family=Lalezar&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+        {% if BLOG_BANNER_COLOR %}
+        <style>
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  color: black;
+  text-align: left;
+}
+
+.page-header {
+            background-color: {{BLOG_BANNER_COLOR}};
+        }
+        </style>
+
+        {% endif %}
+    </head>
+    <body>
+        <div class="page-header">
+            {% if user.is_authenticated %}
+            <a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
+            {% else %}
+                <a href="{% url 'login' %}" class="top-menu"><span class="glyphicon glyphicon-user"></span></a>
+            {% endif %}
+            <h1><img src="{% static "index.jpeg" %}" alt="My image"></h1>
+            <h2>{{ KUBE_POD_NAME }}</h2>
+        </div>
+        <div class="content container">
+            <div class="row">
+                <div class="col-md-8">
+                    {% block content %}
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+    </body>
+    <div class="footer">
+  <p>Footer</p>
+</div>
+</html>

@@ -1,0 +1,11 @@
+certifi
+chardet
+click
+dj-database-url
+
+idna
+Pillow
+pytz
+requests
+schedule
+urllib3
